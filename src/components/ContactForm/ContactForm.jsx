@@ -1,7 +1,7 @@
+import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { nanoid } from 'nanoid';
-import PropTypes from 'prop-types';
 import {
   FormForAddingContacts,
   FormControl,
@@ -10,8 +10,10 @@ import {
   Error,
   Button,
 } from './ContactForm.styled';
+import { addContact } from 'redux/contactsSlice';
 
-export function ContactForm({ onSubmit }) {
+export function ContactForm() {
+  const dispatch = useDispatch();
   const initialValues = {
     name: '',
     number: '',
@@ -23,7 +25,7 @@ export function ContactForm({ onSubmit }) {
       ...values,
     };
 
-    onSubmit(newContact);
+    dispatch(addContact(newContact));
     resetForm();
   };
 
@@ -76,7 +78,3 @@ export function ContactForm({ onSubmit }) {
     </Formik>
   );
 }
-
-ContactForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};
