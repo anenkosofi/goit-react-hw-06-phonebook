@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { HiOutlinePhone, HiOutlineUserCircle } from 'react-icons/hi';
 import { Contact, ContactWrapper, Button } from './ContactListItem.styled';
-import { deleteContact } from 'redux/contactsSlice';
+import { deleteContact } from 'redux/phonebookSlice';
 
 export function ContactListItem({ contact: { id, name, number } }) {
   const dispatch = useDispatch();
