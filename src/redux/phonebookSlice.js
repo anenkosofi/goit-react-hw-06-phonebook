@@ -15,6 +15,15 @@ const phonebookSlice = createSlice({
   initialState: initialState,
   reducers: {
     addContact(state, action) {
+      if (
+        state.contacts.find(
+          ({ name }) =>
+            name.toLowerCase() === action.payload.name.trim().toLowerCase()
+        )
+      ) {
+        alert(`${action.payload.name} is already in your contacts.`);
+        return;
+      }
       return {
         ...state,
         contacts: [...state.contacts, action.payload],
@@ -35,6 +44,5 @@ const phonebookSlice = createSlice({
   },
 });
 
-export const { addContact, deleteContact, filterContact, setFilter } =
-  phonebookSlice.actions;
+export const { addContact, deleteContact, setFilter } = phonebookSlice.actions;
 export const phonebookReducer = phonebookSlice.reducer;
